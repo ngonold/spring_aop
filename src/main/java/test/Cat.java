@@ -2,23 +2,32 @@ package test;
 
 import org.springframework.stereotype.Component;
 import test.dto.Food;
+import test.dto.FoodType;
 
 @Component
 public class Cat implements Animal {
-    private boolean angry = true;
+    private boolean isHungry = false;
 
-    public void voice() {
-        System.out.println("mi");
+    @Override
+    public void gimmeFood() {
+        System.out.println("Meow! gimme some fish, bro!");
     }
 
     @Override
     public boolean eat(Food food) {
-        angry = false;
-        return isAngry();
+        if (food.getFoodType() == FoodType.FISH && food.isFresh()) {
+            isHungry = false;
+            System.out.println("A cat is full!");
+        }
+        return isHungry();
     }
 
     @Override
-    public boolean isAngry() {
-        return angry;
+    public boolean isHungry() {
+        return isHungry;
+    }
+    @Override
+    public void setHungry() {
+        this.isHungry = true;
     }
 }

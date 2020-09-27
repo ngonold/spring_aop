@@ -10,18 +10,23 @@ import java.util.List;
 public class Zoo {
     private final Animal dog;
     private final Animal cat;
-    private final String name;
-    private final List<Animal> animals;
+    private final Animal fish;
 
+    private final String name;
+
+    private final List<Animal> animals;
     @Autowired
     public Zoo(
             Animal dog,
             Animal cat,
+            Animal fish,
+
             @Value("${zoo.name}") String name,
             List<Animal> animals
     ) {
         this.dog = dog;
         this.cat = cat;
+        this.fish = fish;
         this.name = name;
         this.animals = animals;
     }
@@ -32,6 +37,10 @@ public class Zoo {
 
     public Animal getCat() {
         return cat;
+    }
+
+    public Animal getFish() {
+        return fish;
     }
 
     public String getName() {

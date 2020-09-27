@@ -3,9 +3,11 @@ package test;
 import test.dto.Food;
 
 public interface Animal {
-    void voice();
+    void gimmeFood();
 
     boolean eat(Food food);
 
-    boolean isAngry();
+    boolean isHungry();
+
+    void setHungry();
 }

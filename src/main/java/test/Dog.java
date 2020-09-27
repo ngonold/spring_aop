@@ -9,20 +9,25 @@ import static org.springframework.beans.factory.config.BeanDefinition.SCOPE_PROT
 @Component
 @Scope(value = SCOPE_PROTOTYPE)
 public class Dog implements Animal {
-    private boolean angry = true;
+    private boolean isHungry = true;
 
-    public void voice() {
+    public void gimmeFood() {
         System.out.println("gav");
     }
 
     @Override
     public boolean eat(Food food) {
-        angry = false;
-        return isAngry();
+        isHungry = false;
+        return isHungry();
     }
 
     @Override
-    public boolean isAngry() {
+    public boolean isHungry() {
         return false;
+    }
+
+    @Override
+    public void setHungry() {
+        isHungry = true;
     }
 }

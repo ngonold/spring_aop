@@ -5,20 +5,27 @@ import test.dto.Food;
 
 @Component
 public class Fish implements Animal {
-    private boolean angry = true;
+    private boolean isHungry = true;
+
 
     @Override
-    public void voice() {
+    public void gimmeFood() {
+        System.out.println("A fish is gurgling for food!");
     }
 
     @Override
     public boolean eat(Food food) {
-        angry = false;
-        return isAngry();
+        isHungry = false;
+        return isHungry();
     }
 
     @Override
-    public boolean isAngry() {
-        return angry;
+    public boolean isHungry() {
+        return isHungry;
+    }
+
+    @Override
+    public void setHungry() {
+        this.isHungry = true;
     }
 }
