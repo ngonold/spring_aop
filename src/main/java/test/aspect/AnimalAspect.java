@@ -27,10 +27,17 @@ public class AnimalAspect {
     @Pointcut("within(test.Fish)")
     public void fishPoint() {
     }
+    @Pointcut("within(test.Dog)")
+    public void dogPoint() {
+    }
+    @Pointcut("within(test.Cat)")
+    public void catPoint() {
+    }
 
     @Before(value = "eatPoint()")
     public void beforeEat() {
         System.out.println("start eat");
+
     }
 
     @After(value = "eatPoint()")
@@ -69,7 +76,24 @@ public class AnimalAspect {
 
     @Around(value = "eatPoint() && args(food) && fishPoint()")
     public Object validateEatForFish(ProceedingJoinPoint proceedingJoinPoint, Food food) throws Throwable {
+        if (Objects.equals(food.getFoodType(), FoodType.WORM)) {
+            return false;
+        } else {
+            return eatAround(proceedingJoinPoint, food);
+        }
+    }
+    @Around(value = "eatPoint() && args(food) && catPoint()")
+    public Object validateEatForCat(ProceedingJoinPoint proceedingJoinPoint, Food food) throws Throwable {
         if (Objects.equals(food.getFoodType(), FoodType.FISH)) {
+            return false;
+        } else {
+            return eatAround(proceedingJoinPoint, food);
+        }
+    }
+
+    @Around(value = "eatPoint() && args(food) && dogPoint()")
+    public Object validateEatForDog(ProceedingJoinPoint proceedingJoinPoint, Food food) throws Throwable {
+        if (Objects.equals(food.getFoodType(), FoodType.BONE)) {
             return false;
         } else {
             return eatAround(proceedingJoinPoint, food);
