@@ -34,7 +34,10 @@ public class GetHungryJob {
     @Scheduled(fixedDelay = 6000)
     public void setDogHungry() {
         System.out.println("Getting dog hungry>>");
-        zoo.getDog().setHungry();
+        if (!zoo.getDog().isHungry()) {
+            zoo.getDog().setHungry();
+            zooEventPublisher.publishHungryEvent("dog");
+        }
     }
 
     /**
@@ -43,6 +46,9 @@ public class GetHungryJob {
     @Scheduled(fixedDelay = 3000)
     public void setFishHungry() {
         System.out.println("Getting fish hungry>>");
-        zoo.getDog().setHungry();
+        if (!zoo.getFish().isHungry()) {
+            zoo.getFish().setHungry();
+            zooEventPublisher.publishHungryEvent("fish");
+        }
     }
 }

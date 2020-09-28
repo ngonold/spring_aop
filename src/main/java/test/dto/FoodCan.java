@@ -1,20 +1,38 @@
 package test.dto;
 
 import java.time.LocalDateTime;
+import java.util.EmptyStackException;
 import java.util.Random;
 import java.util.Stack;
 
+/**
+ * try to make a singleton Oo
+ */
 public class FoodCan {
+    private static FoodCan foodCanInstance;
     private final Stack<Food> can;
 
-    public FoodCan(Stack<Food> can) {
+    private FoodCan(Stack<Food> can) {
         this.can = can;
     }
+
+    public static FoodCan getFoodCanInstance() {
+        if (foodCanInstance == null)
+            foodCanInstance = new FoodCan(new Stack<Food>());
+        return foodCanInstance;
+    }
+
     public void addFood(Food food) {
         can.push(food);
     }
     public Food takeFood() {
-        return can.pop();
+        try {
+            return can.pop();
+        }
+        catch (EmptyStackException exception) {
+           exception.getStackTrace();
+        }
+        return null;
     }
 
     public void addRandomFood() {

@@ -28,4 +28,9 @@ public class Fish implements Animal {
     public void setHungry() {
         this.isHungry = true;
     }
+
+    @Override
+    public void eatFromCan() {
+
+    }
 }

@@ -12,7 +12,7 @@ public class Dog implements Animal {
     private boolean isHungry = true;
 
     public void gimmeFood() {
-        System.out.println("gav");
+        System.out.println("I'm a hungry angry beast! Wanna eat!");
     }
 
     @Override
@@ -29,5 +29,10 @@ public class Dog implements Animal {
     @Override
     public void setHungry() {
         isHungry = true;
+    }
+
+    @Override
+    public void eatFromCan() {
+
     }
 }

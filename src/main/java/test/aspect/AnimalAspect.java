@@ -35,17 +35,18 @@ public class AnimalAspect {
 
     @After(value = "eatPoint()")
     public void afterEat() {
-        System.out.println("end eat");
+//        System.out.println("end eat");
     }
 
     @AfterThrowing(value = "eatPoint()", throwing = "ex")
     public void eatFailed(Throwable ex) {
-        System.out.println("eat failed: " + ex.getMessage());
+//        System.out.println("eat failed: " + ex.getMessage());
+        System.out.println("the can is empty! no food");
     }
 
     @AfterReturning(value = "eatPoint()")
     public void eatSuccess(JoinPoint joinPoint) {
-        System.out.println("eat success");
+//        System.out.println("eat success");
     }
 
     @Around(value = "eatPoint() && args(food) && !fishPoint()")
@@ -57,11 +58,11 @@ public class AnimalAspect {
         System.out.println(target + " start eat");
         try {
             Object result = proceedingJoinPoint.proceed();
-            System.out.println(target + " eat success");
-            System.out.println(target + " end eat");
+//            System.out.println(target + " eat success");
+//            System.out.println(target + " end eat");
             return result;
         } catch (Throwable e) {
-            System.out.println(target + " eat failed: " + e.getMessage());
+//            System.out.println(target + " eat failed: " + e.getMessage());
             throw e;
         }
     }

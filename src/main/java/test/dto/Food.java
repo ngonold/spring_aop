@@ -38,7 +38,6 @@ public class Food {
     }
 
     public boolean isFresh() {
-        LocalDateTime now = LocalDateTime.now();
-        return !now.isAfter(expirationDate);
+        return !LocalDateTime.now().isAfter(expirationDate);
     }
 }

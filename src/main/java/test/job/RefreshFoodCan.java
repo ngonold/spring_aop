@@ -17,7 +17,7 @@ public class RefreshFoodCan {
     @Autowired
     RefreshFoodCan(ZooEventPublisher zooEventPublisher) {
         this.zooEventPublisher = zooEventPublisher;
-        this.foodCan = new FoodCan(new Stack<Food>());
+        this.foodCan = FoodCan.getFoodCanInstance();
     }
 
     @Scheduled(fixedDelay = 1000)

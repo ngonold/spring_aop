@@ -10,4 +10,6 @@ public interface Animal {
     boolean isHungry();
 
     void setHungry();
+
+    void eatFromCan();
 }
