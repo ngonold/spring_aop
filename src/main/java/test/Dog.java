@@ -3,6 +3,7 @@ package test;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import test.dto.Food;
+import test.dto.FoodType;
 
 import static org.springframework.beans.factory.config.BeanDefinition.SCOPE_PROTOTYPE;
 
@@ -17,7 +18,12 @@ public class Dog implements Animal {
 
     @Override
     public boolean eat(Food food) {
-        isHungry = false;
+        if (food.getFoodType() == FoodType.BONE && food.isFresh()) {
+            isHungry = false;
+            System.out.println("A dog is full!");
+        }
+        else
+            System.out.println("Bad food for doggy!");
         return isHungry();
     }
 

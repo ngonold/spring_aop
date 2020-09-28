@@ -2,6 +2,7 @@ package test;
 
 import org.springframework.stereotype.Component;
 import test.dto.Food;
+import test.dto.FoodType;
 
 @Component
 public class Fish implements Animal {
@@ -15,7 +16,12 @@ public class Fish implements Animal {
 
     @Override
     public boolean eat(Food food) {
-        isHungry = false;
+        if (food.getFoodType() == FoodType.WORM && food.isFresh()) {
+            isHungry = false;
+            System.out.println("A fish is full!");
+        }
+        else
+            System.out.println("Bad food for fishy!");
         return isHungry();
     }
 
