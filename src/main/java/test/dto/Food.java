@@ -3,9 +3,15 @@ package test.dto;
 import java.time.LocalDateTime;
 
 public class Food {
-    private String foodName;
+//    private String foodName;
     private LocalDateTime expirationDate;
     private FoodType foodType;
+
+    public Food(FoodType foodType, LocalDateTime expirationDate) {
+//        this.foodName = foodName;
+        this.expirationDate = expirationDate;
+        this.foodType = foodType;
+    }
 
     public FoodType getFoodType() {
         return foodType;
@@ -15,13 +21,13 @@ public class Food {
         this.foodType = foodType;
     }
 
-    public String getFoodName() {
-        return foodName;
-    }
-
-    public void setFoodName(String foodName) {
-        this.foodName = foodName;
-    }
+//    public String getFoodName() {
+//        return foodName;
+//    }
+//
+//    public void setFoodName(String foodName) {
+//        this.foodName = foodName;
+//    }
 
     public LocalDateTime getExpirationDate() {
         return expirationDate;

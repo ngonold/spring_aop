@@ -2,6 +2,7 @@ package test.event;
 
 import org.springframework.context.ApplicationEvent;
 
+
 public class ZooEvent extends ApplicationEvent {
 
     private String message;

@@ -11,6 +11,7 @@ import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 import test.dto.Food;
+import test.dto.FoodType;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -67,7 +68,7 @@ public class AnimalAspect {
 
     @Around(value = "eatPoint() && args(food) && fishPoint()")
     public Object validateEatForFish(ProceedingJoinPoint proceedingJoinPoint, Food food) throws Throwable {
-        if (Objects.equals(food.getFoodName(), "fish")) {
+        if (Objects.equals(food.getFoodType(), FoodType.FISH)) {
             return false;
         } else {
             return eatAround(proceedingJoinPoint, food);

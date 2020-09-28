@@ -8,7 +8,7 @@ import test.event.ZooEventPublisher;
 
 @Service
 public class GetHungryJob {
-    private Zoo zoo;
+    private final Zoo zoo;
     private ZooEventPublisher zooEventPublisher;
     @Autowired
     public GetHungryJob(Zoo zoo, ZooEventPublisher zooEventPublisher) {
@@ -16,17 +16,33 @@ public class GetHungryJob {
         this.zooEventPublisher = zooEventPublisher;
     }
 
+    /**
+     * for now set 5 sec fixedDelay to make a Cat hungry
+     */
     @Scheduled(fixedDelay = 5000)
-    public void getCatHungry() {
+    public void setCatHungry() {
         System.out.println("Getting cat hungry>>");
         if (!zoo.getCat().isHungry()) {
             zoo.getCat().setHungry();
             zooEventPublisher.publishHungryEvent("cat");
         }
     }
+
+    /**
+     * for now set 6 sec fixedDelay to make a Dog hungry
+     */
     @Scheduled(fixedDelay = 6000)
-    public void getDogHungry() {
+    public void setDogHungry() {
         System.out.println("Getting dog hungry>>");
+        zoo.getDog().setHungry();
+    }
+
+    /**
+     * for now set 3 sec fixedDelay to make a Fish hungry
+     */
+    @Scheduled(fixedDelay = 3000)
+    public void setFishHungry() {
+        System.out.println("Getting fish hungry>>");
         zoo.getDog().setHungry();
     }
 }

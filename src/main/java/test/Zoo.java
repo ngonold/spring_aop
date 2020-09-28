@@ -3,8 +3,10 @@ package test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import test.dto.Food;
 
 import java.util.List;
+import java.util.Stack;
 
 @Component
 public class Zoo {
@@ -20,7 +22,6 @@ public class Zoo {
             Animal dog,
             Animal cat,
             Animal fish,
-
             @Value("${zoo.name}") String name,
             List<Animal> animals
     ) {
