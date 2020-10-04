@@ -7,26 +7,31 @@ import test.Zoo;
 
 @Service
 public class EventService {
-    Zoo zoo;
+    public Zoo zoo;
     @Autowired
     EventService(Zoo zoo) {
         this.zoo = zoo;
     }
     @EventListener(ZooEvent.class)
     public void onApplicationEvent(ZooEvent zooEvent) {
+        final String CAT = "cat";
+        final String DOG = "dog";
+        final String FISH = "fish";
         System.out.println(zooEvent.getMessage());
         String eventMsg = zooEvent.getMessage();
         switch (eventMsg) {
-            case "cat":
+            case CAT:
                 zoo.getCat().gimmeFood();
                 break;
-            case "dog":
+            case DOG:
                 zoo.getDog().gimmeFood();
                 break;
-            case "fish":
+            case FISH:
                 zoo.getFish().gimmeFood();
             default:
                 break;
         }
+        //give the food to each
+        zoo.getAnimals().forEach(animal -> animal.eat(zoo.canTakeFood()));
     }
 }

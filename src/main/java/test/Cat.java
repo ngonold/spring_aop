@@ -2,8 +2,6 @@ package test;
 
 import org.springframework.stereotype.Component;
 import test.dto.Food;
-import test.dto.FoodCan;
-import test.dto.FoodType;
 
 @Component
 public class Cat implements Animal {
@@ -12,19 +10,16 @@ public class Cat implements Animal {
     @Override
     public void gimmeFood() {
         System.out.println("Meow! gimme some fish, bro!");
-        eatFromCan();
     }
 
     @Override
     public boolean eat(Food food) {
         //probably this stuff should be handled within some Aspect
-        if (food.getFoodType() == FoodType.FISH && food.isFresh()) {
+        if (!food.isWrong()) {
             isHungry = false;
             System.out.println("A cat is full!");
         }
-        else
-            System.out.println("Bad food for kitten!");
-        return isHungry();
+        return isHungry;
     }
 
     @Override
@@ -38,7 +33,8 @@ public class Cat implements Animal {
 
     @Override
     public void eatFromCan() {
-        FoodCan foodCan = FoodCan.getFoodCanInstance();
-        eat(foodCan.takeFood());
+        //??? WRONG!
+//        FoodCan foodCan = FoodCan.getFoodCanInstance();
+//        eat(foodCan.takeFood());
     }
 }

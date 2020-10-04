@@ -1,5 +1,8 @@
 package test.dto;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import java.time.LocalDateTime;
 import java.util.EmptyStackException;
 import java.util.Random;
@@ -8,31 +11,42 @@ import java.util.Stack;
 /**
  * try to make a singleton Oo
  */
+@Service
 public class FoodCan {
-    private static FoodCan foodCanInstance;
-    private final Stack<Food> can;
+//    private static FoodCan foodCanInstance;
+    private final Stack<Food> foodCan;
 
-    private FoodCan(Stack<Food> can) {
-        this.can = can;
+    @Autowired
+    public FoodCan() {
+        this.foodCan = new Stack<>();
+        for (int i = 0; i < 3; i++) {
+            this.addRandomFood();
+        }
     }
 
-    public static FoodCan getFoodCanInstance() {
-        if (foodCanInstance == null)
-            foodCanInstance = new FoodCan(new Stack<Food>());
-        return foodCanInstance;
-    }
+//    private FoodCan(Stack<Food> can) {
+//        this.can = can;
+//    }
+
+//    public static FoodCan getFoodCanInstance() {
+//        if (foodCanInstance == null)
+//            foodCanInstance = new FoodCan(new Stack<Food>());
+//        return foodCanInstance;
+//    }
 
     public void addFood(Food food) {
-        can.push(food);
+        foodCan.push(food);
     }
     public Food takeFood() {
         try {
-            return can.pop();
+            return foodCan.pop();
         }
         catch (EmptyStackException exception) {
            exception.getStackTrace();
+            System.out.println("No food in the can!");
+            throw new EmptyStackException();
         }
-        return null;
+
     }
 
     public void addRandomFood() {

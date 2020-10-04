@@ -34,9 +34,34 @@ public class AnimalAspect {
     public void catPoint() {
     }
 
-    @Before(value = "eatPoint()")
-    public void beforeEat() {
+    @Before(value = "eatPoint() && args(food)")
+    public void beforeEat(JoinPoint joinPoint, Food food) {
         System.out.println("start eat");
+        String animalType = joinPoint.getTarget().getClass().getName();
+        if (food.isFresh()) {
+            switch (animalType) {
+                case "test.Cat":
+                    if (!food.getFoodType().equals(FoodType.FISH)) {
+                        System.out.println("Cat: not Okay!");
+                        food.setWrong();
+                    }
+                    break;
+                case  "test.Dog":
+                    if (!food.getFoodType().equals(FoodType.BONE)) {
+                        System.out.println("Dog: not Okay!");
+                        food.setWrong();
+                    }
+                    break;
+                case "test.Fish":
+                    if (!food.getFoodType().equals(FoodType.WORM)) {
+                        System.out.println("Fish: not Okay!");
+                        food.setWrong();
+                    }
+                    break;
+            }
+        } else {
+            System.out.println("It stinks!");
+        }
 
     }
 

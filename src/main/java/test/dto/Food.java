@@ -6,6 +6,7 @@ public class Food {
 //    private String foodName;
     private LocalDateTime expirationDate;
     private FoodType foodType;
+    private boolean isWrong = false;
 
     public Food(FoodType foodType, LocalDateTime expirationDate) {
 //        this.foodName = foodName;
@@ -15,6 +16,14 @@ public class Food {
 
     public FoodType getFoodType() {
         return foodType;
+    }
+
+    public void setWrong() {
+        isWrong = true;
+    }
+
+    public boolean isWrong(){
+        return isWrong;
     }
 
     public void setFoodType(FoodType foodType) {

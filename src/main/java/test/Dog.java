@@ -18,7 +18,7 @@ public class Dog implements Animal {
 
     @Override
     public boolean eat(Food food) {
-        if (food.getFoodType() == FoodType.BONE && food.isFresh()) {
+        if (!food.isWrong()) {
             isHungry = false;
             System.out.println("A dog is full!");
         }

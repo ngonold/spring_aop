@@ -16,7 +16,7 @@ public class Fish implements Animal {
 
     @Override
     public boolean eat(Food food) {
-        if (food.getFoodType() == FoodType.WORM && food.isFresh()) {
+        if (!food.isWrong()) {
             isHungry = false;
             System.out.println("A fish is full!");
         }

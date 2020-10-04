@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import test.dto.Food;
+import test.dto.FoodCan;
 
 import java.util.List;
 import java.util.Stack;
@@ -15,6 +16,7 @@ public class Zoo {
     private final Animal fish;
 
     private final String name;
+    private final FoodCan can;
 
     private final List<Animal> animals;
     @Autowired
@@ -22,14 +24,17 @@ public class Zoo {
             Animal dog,
             Animal cat,
             Animal fish,
+            FoodCan can,
             @Value("${zoo.name}") String name,
             List<Animal> animals
-    ) {
+            ) {
         this.dog = dog;
         this.cat = cat;
         this.fish = fish;
         this.name = name;
+        this.can = can;
         this.animals = animals;
+        //can.addRandomFood();
     }
 
     public Animal getDog() {
@@ -44,8 +49,8 @@ public class Zoo {
         return fish;
     }
 
-    public String getName() {
-        return name;
+    public Food canTakeFood() {
+        return can.takeFood();
     }
 
     public List<Animal> getAnimals() {

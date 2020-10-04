@@ -3,6 +3,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import test.Zoo;
 import test.configuration.AnnotationConfiguration;
 import test.dto.Food;
+import test.dto.FoodCan;
 import test.dto.FoodType;
 import test.service.ZooService;
 
@@ -22,8 +23,9 @@ public class Main {
 
     public static void feedAnimal(ApplicationContext context) {
         ZooService service = context.getBean(ZooService.class);
-        Food food = new Food(FoodType.FISH, LocalDateTime.now().plusSeconds(20));
-        service.feed(food);
+        //FoodCan foodCan = new FoodCan();
+        //Food food = new Food(FoodType.FISH, LocalDateTime.now().plusSeconds(20));
+        //service.feed(foodCan.takeFood());
     }
 
     public static ApplicationContext getAnnotationContext() {
